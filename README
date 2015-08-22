@@ -1,0 +1,6 @@
+# vimconfig
+A repository for my vimrc
+
+Vim 7.4 introduced a new, very useful, scheme: it looks for the usual `~/.vimrc` and also for `~/.vim/vimrc`.
+So to install `vimrc` from this repository, go to `~/.vim` and clone this repository.
+
