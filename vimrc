@@ -13,6 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 " ### a Git wrapper ###
 Plugin 'tpope/vim-fugitive'
 
+" ### vim-git-log ###
+" View your git log interactively in Vim. Side by side diffs
+Plugin 'kablamo/vim-git-log'
+
 " ### Easy motion ###
 " if you're looking for an "o", you can use the f motion. Type <Leader><Leader>fo, and all "o" characters are highlighted
 Plugin 'Lokaltog/vim-easymotion'
