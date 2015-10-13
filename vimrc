@@ -17,6 +17,10 @@ Plugin 'tpope/vim-fugitive'
 " View your git log interactively in Vim. Side by side diffs
 Plugin 'kablamo/vim-git-log'
 
+" ### gitv ###
+" gitv is a 'gitk clone' plugin for the text editor Vim
+Plugin 'gregsexton/gitv'
+
 " ### Easy motion ###
 " if you're looking for an "o", you can use the f motion. Type <Leader><Leader>fo, and all "o" characters are highlighted
 Plugin 'Lokaltog/vim-easymotion'
