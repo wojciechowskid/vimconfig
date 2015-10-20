@@ -13,10 +13,6 @@ Plugin 'VundleVim/Vundle.vim'
 " ### a Git wrapper ###
 Plugin 'tpope/vim-fugitive'
 
-" ### vim-git-log ###
-" View your git log interactively in Vim. Side by side diffs
-Plugin 'kablamo/vim-git-log'
-
 " ### gitv ###
 " gitv is a 'gitk clone' plugin for the text editor Vim
 Plugin 'gregsexton/gitv'
@@ -98,7 +94,8 @@ let g:ctrlp_working_path_mode = 'ra'
 Plugin 'honza/vim-snippets'
 Plugin 'MarcWeber/ultisnips'
 
-
+" ### vimwiki ###
+Plugin 'vimwiki/vimwiki'
 
 
 
@@ -107,10 +104,7 @@ Plugin 'fholgado/minibufexpl.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
-filetype plugin indent on     " required!
-" To ignore plugin indent changes, instead use:
-" "filetype plugin on
-"
+
 " Brief help
 " :PluginList          - list configured bundles
 " :PluginInstall(!)    - install(update) bundles
