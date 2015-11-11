@@ -76,6 +76,48 @@ Plugin 'scrooloose/nerdcommenter'
 "I don't know if it conflicts with Jedi from YouCompleteMe
 Plugin 'klen/python-mode'
 
+" ### php.vim ###
+" better php syntax
+Plugin 'StanAngeloff/php.vim'
+
+" ### PHP-QA ###
+" Synatx errors, PHP Code Sniffer and PHP Mess Detector
+Plugin 'joonty/vim-phpqa'
+" TODO:
+" PHP Code sniffer will require 'sudo apt-get install php-codesniffer'
+" and PHP Mess Detector -- 'sudo apt-get install phpmd'
+
+" ### vmustache ###
+" A dependacy for PDV
+Plugin 'tobyS/vmustache'
+
+" ### PDV - PHP Documentor ###
+Plugin 'tobyS/pdv'
+let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
+nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
+
+" ### Tagbar ###
+" browsing code structure for the open file
+" 
+" TODO:
+" 1) The plugin requires Tagbar-PHPctags plugin for PHP language.
+" 2) For other languages it requires `ctags-exuberant` to be installed (sudo
+" apt-get install ctags-exuberant)
+Plugin 'majutsushi/tagbar'
+
+" ### Tagbar-PHPctags
+" Makes tagbar plugin using phpctags
+"
+" TODO:
+" An addon plugin for tagbar using phpctags to generate php ctags index
+" phpctags needs to be built first:
+" 1) Go to .vim/bundle/tagbar-phpctags.vim/
+" 2) Run `make`
+" 3) Point to phpctags.phar in `g:tagbar_phpctags_bin` (the full path, or
+" relative to home is required)
+Plugin 'vim-php/tagbar-phpctags.vim'
+let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim/build/phpctags-0.5.1/build/phpctags.phar'
+
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
@@ -92,15 +134,16 @@ let g:ctrlp_working_path_mode = 'ra'
 " One needs somethink like SnipMate
 " Optional:
 Plugin 'honza/vim-snippets'
-Plugin 'MarcWeber/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 " ### vimwiki ###
 Plugin 'vimwiki/vimwiki'
 
-
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/wiki/', 'path_html': '~/Dropbox/vimwiki/public_html/'}]
 
 
 Plugin 'fholgado/minibufexpl.vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -121,10 +164,10 @@ let g:snippets_dir = '~/.vim/bundle/vim-snippets/snippets'
 let g:UltiSnips = {}
 
 " customize mappings, eg use snipmate like behaviour
-let g:UltiSnips.ExpandTrigger = "<c-j>"
+let g:UltiSnipsExpandTrigger = "<c-j>"
 " " It does make sense to not use <tab> here, use UltiSnips default <c-j>
-" " let g:UltiSnips.JumpForwardTrigger = "<tab>"
-" let g:UltiSnips.JumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 
 " Now its time to tell UltiSnips about which snippets to load.
 " You do so for snipmate snippets and UltiSnips snippets individually.
@@ -341,4 +384,27 @@ map <M-Right> :bnext<CR>
 " Select all.
 map <c-a> ggVG
 
-set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+" Spell checking languages
+" :set spell -- turn spell checking on
+" :set nospell -- turn spell checking off
+set spelllang=ru_ru,en_us,pl_pl
+" If you have a spell file without regions, use (that's mainly for 'pl'
+" region, for 'ru' and 'en' it works pretty well
+set spl=en,ru,pl
+
+" Russian keybord mapping allows entering commands with cyrillic keyboard
+set keymap=russian-jcukenwin
+set iminsert=0
+set imsearch=0
+highlight lCursor guifg=NONE guibg=Cyan
+
+" Overriding PHP syntax for php.vim
+function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
