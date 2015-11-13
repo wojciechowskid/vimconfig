@@ -40,8 +40,11 @@ Plugin 'scrooloose/syntastic'
 " This does what it says on the tin. It will check your file on open too, not just on save.
 " You might not want this, so just leave it out if you don't.
 let g:syntastic_check_on_open=1
-" this requires $ sudo npm install -g jshint    globally, which provide you
-" with JSLint
+" TODO:
+"1) this requires $ sudo npm install -g jshint    globally, which provide you with JSLint
+"2) for PHP the plugin uses PHP code sniffer, mess detector, etc, so make sure
+"you've installed them and configured correctly, say, set default standard for PSR2:
+"sudo phpcs --config-set default_standard PSR2
 
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'davidhalter/jedi-vim'
@@ -92,7 +95,7 @@ Plugin 'joonty/vim-phpqa'
 Plugin 'tobyS/vmustache'
 
 " ### PDV - PHP Documentor ###
-Plugin 'tobyS/pdv'
+"Plugin 'tobyS/pdv'
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
 
@@ -117,6 +120,11 @@ Plugin 'majutsushi/tagbar'
 " relative to home is required)
 Plugin 'vim-php/tagbar-phpctags.vim'
 let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim/build/phpctags-0.5.1/build/phpctags.phar'
+
+" ### vdebug ###
+" Debugging for PHP, Python, etc. Provides a VIM interface for any debugger
+" using DBGP protocol (Xdebug, etc.)
+Plugin 'joonty/vdebug'
 
 " vim-scripts repos
 Plugin 'L9'
