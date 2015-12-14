@@ -144,13 +144,37 @@ let g:ctrlp_working_path_mode = 'ra'
 Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
 
+Plugin 'fholgado/minibufexpl.vim'
+
+" === NOTE TAKING AND TASKS ===
 " ### vimwiki ###
 Plugin 'vimwiki/vimwiki'
-
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/wiki/', 'path_html': '~/Dropbox/vimwiki/public_html/'}]
 
+" ### vim-taskwarrior ###
+" A client for taskwarrior
+Plugin 'blindFS/vim-taskwarrior'
+" default task report type
+let g:task_report_name     = 'work'
+" custom reports have to be listed explicitly to make them available
+let g:task_report_command  = ['work']
+let g:task_rc_override = 'rc.defaultwidth=999'
 
-Plugin 'fholgado/minibufexpl.vim'
+" ### vim-misc ###
+" required by vim-notes
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-shell'
+
+" ### vim-notes ###
+" A plugin for note taking
+Plugin 'xolox/vim-notes'
+let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_title_sync = 'rename_file'
+
+" ### utl.vim ###
+" A plugin for linking text files and openning links in correposnding apps
+Plugin 'vim-scripts/utl.vim'
+
 
 
 " All of your Plugins must be added before the following line
