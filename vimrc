@@ -425,6 +425,7 @@ set spelllang=ru_ru,en_us,pl_pl
 set spl=en,ru,pl
 
 " Russian keybord mapping allows entering commands with cyrillic keyboard
+" Use key 'Ctrl+^'
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
