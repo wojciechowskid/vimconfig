@@ -46,7 +46,14 @@ let g:syntastic_check_on_open=1
 "you've installed them and configured correctly, say, set default standard for PSR2:
 "sudo phpcs --config-set default_standard PSR2
 
+" ### YouCompleteMe ###
+" TODO:
+"1) Install development tools and CMake: sudo apt-get install build-essential cmake
+"2) Make sure you have Python headers installed: sudo apt-get install python-dev python3-dev
+"3) cd ~/.vim/bundle/YouCompleteMe
+"4) ./install.py --clang-completer --tern-completer
 Plugin 'Valloric/YouCompleteMe'
+
 Plugin 'davidhalter/jedi-vim'
 let g:jedi#documentation_command = "<C-K>"
 
@@ -56,6 +63,11 @@ let g:ycm_add_preview_to_completeopt=0
 let g:ycm_confirm_extra_conf=0
 set completeopt-=preview
 
+" ### Tern for VIM ###
+" This is a Vim plugin that provides Tern-based JavaScript editing support
+" TODO:
+" 1) cd ~/.vim/bundle/tern_for_vim
+" 2) npm install
 Plugin 'marijnh/tern_for_vim'
 
 "Powerline for showing git current branch in git:
@@ -124,7 +136,14 @@ let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim/build/phpctags-0.5.
 " ### vdebug ###
 " Debugging for PHP, Python, etc. Provides a VIM interface for any debugger
 " using DBGP protocol (Xdebug, etc.)
+" TODO:
+" 1) install xdebug: sudo apt-get install php5-xdebug
+" 2) 
 Plugin 'joonty/vdebug'
+
+" ### vim-twig ###
+" Syntax highlight for twig templates
+Plugin 'evidens/vim-twig'
 
 " vim-scripts repos
 Plugin 'L9'
@@ -155,12 +174,12 @@ let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/wiki/', 'path_html': '~/Dropbo
 
 " ### vim-taskwarrior ###
 " A client for taskwarrior
-Plugin 'blindFS/vim-taskwarrior'
+" Plugin 'blindFS/vim-taskwarrior'
 " default task report type
-let g:task_report_name     = 'work'
+" let g:task_report_name     = 'work'
 " custom reports have to be listed explicitly to make them available
-let g:task_report_command  = ['work']
-let g:task_rc_override = 'rc.defaultwidth=999'
+" let g:task_report_command  = ['work']
+" let g:task_rc_override = 'rc.defaultwidth=999'
 
 " ### vim-misc ###
 " required by vim-notes
