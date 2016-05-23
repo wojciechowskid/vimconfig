@@ -145,6 +145,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
 
 Plugin 'fholgado/minibufexpl.vim'
+" Fixing bug with syntax highlight after :bd
+" let g:miniBufExplForceSyntaxEnable = 1
 
 " === NOTE TAKING AND TASKS ===
 " ### vimwiki ###
@@ -175,7 +177,13 @@ let g:notes_title_sync = 'rename_file'
 " A plugin for linking text files and openning links in correposnding apps
 Plugin 'vim-scripts/utl.vim'
 
+" ### Sauce for VIM ###
+Plugin 'joonty/vim-sauce.git'
+let g:sauce_path = "~/Dropbox/vim/sauces"
 
+" ### vim-taggatron ###
+" Automatic tags generation. Requires ctags-exuberant
+Plugin 'joonty/vim-taggatron'
 
 " All of your Plugins must be added before the following line
 call vundle#end()
