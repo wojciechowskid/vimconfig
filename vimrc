@@ -54,6 +54,12 @@ let g:syntastic_check_on_open=1
 "4) ./install.py --clang-completer --tern-completer
 Plugin 'Valloric/YouCompleteMe'
 
+" turn off ycm semantic completion for specified languages
+let g:ycm_filetype_specific_completion_to_disable = {
+    \ 'php': 1
+    \}
+
+
 Plugin 'davidhalter/jedi-vim'
 let g:jedi#documentation_command = "<C-K>"
 
@@ -95,9 +101,34 @@ Plugin 'klen/python-mode'
 " better php syntax
 Plugin 'StanAngeloff/php.vim'
 
+" ### phpcomplete.vim ###
+"Plugin 'shawncplus/phpcomplete.vim'
+"let g:phpcomplete_parse_docblock_comments = 1
+
+"========== VIM-PHP-Namespace
+Plugin 'arnaud-lb/vim-php-namespace'
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
+
+function! IPhpExpandClass()
+    call PhpExpandClass()
+    call feedkeys('a', 'n')
+endfunction
+autocmd FileType php inoremap <Leader>e <Esc>:call IPhpExpandClass()<CR>
+autocmd FileType php noremap <Leader>e :call PhpExpandClass()<CR>
+
+autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
+autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+
 " ### PHP-QA ###
 " Synatx errors, PHP Code Sniffer and PHP Mess Detector
 Plugin 'joonty/vim-phpqa'
+
+
 " TODO:
 " PHP Code sniffer will require 'sudo apt-get install php-codesniffer'
 " and PHP Mess Detector -- 'sudo apt-get install phpmd'
@@ -107,9 +138,12 @@ Plugin 'joonty/vim-phpqa'
 Plugin 'tobyS/vmustache'
 
 " ### PDV - PHP Documentor ###
-"Plugin 'tobyS/pdv'
+Plugin 'tobyS/pdv'
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <buffer> <C-d> :call pdv#DocumentWithSnip()<CR>
+nnoremap <leader>pd :call pdv#DocumentWithSnip()<CR>
+
+" ### VIM Php Refactoring Toolbox ###
+Plugin 'adoy/vim-php-refactoring-toolbox'
 
 " ### Tagbar ###
 " browsing code structure for the open file
@@ -138,7 +172,7 @@ let g:tagbar_phpctags_bin='~/.vim/bundle/tagbar-phpctags.vim/build/phpctags-0.5.
 " using DBGP protocol (Xdebug, etc.)
 " TODO:
 " 1) install xdebug: sudo apt-get install php5-xdebug
-" 2) 
+" 2) see :help VdebugSetUp
 Plugin 'joonty/vdebug'
 
 " ### vim-twig ###
@@ -160,8 +194,11 @@ let g:ctrlp_working_path_mode = 'ra'
 
 " One needs somethink like SnipMate
 " Optional:
-Plugin 'honza/vim-snippets'
 Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+" If you want :UltiSnipsEdit to split your window.
+ let g:UltiSnipsEditSplit="vertical"
 
 Plugin 'fholgado/minibufexpl.vim'
 " Fixing bug with syntax highlight after :bd
@@ -260,11 +297,14 @@ let g:UltiSnips.always_use_first_snippet = 1
 " _ represents snipmate snippets which are present always
 let g:UltiSnips.snipmate_ft_filter = {
             \ 'default' : {'filetypes': ["FILETYPE", "_"] },
-            \ 'html' : {'filetypes': ["html", "javascript", "_"] },
+            \ 'html' : {'filetypes': ["html", "javascript", "blade", "_"] },
             \ 'xhtml' : {'filetypes': ["xhtml", "html", "javascript", "_"] },
             \ 'cpp' : {'filetypes': [] },
+            \ 'php': {'filetypes': ['php', 'phtml']},
             \ }
 
+" Setting html filetype for blade templates
+autocmd BufRead,BufNewFile *.blade.php set filetype=html
 " Please mind that
 
 
@@ -363,13 +403,19 @@ set showmatch
 " Omnicompletion functions
 "set ofu=syntaxcomplete#Complete
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 "autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 "autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
 "autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 "autocmd BufNewFile,BufRead *.less set ft=less.css
 "au FileType py set expandtab
 "au FileType py set foldmethod=indent
-"set completeopt+=longest
+"
+" longest makes Vim only autocomplete up to the “longest” string that all the
+" completions have in common and menuone makes the menu spawn even if there is
+" only one result.
+"set" completeopt+=longest,menu
+    "
 " If you prefer the Omni-Completion tip window to close when a selection is
 " made, these lines close it on movement in insert mode or when leaving
 " insert mode

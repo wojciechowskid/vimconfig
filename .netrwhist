@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/dmitry/dev/veritas/app/Http'
+let g:netrw_dirhist_2='/home/dmitry/dev/veritas/app'
+let g:netrw_dirhist_3='/home/dmitry/dev/veritas'
+let g:netrw_dirhist_4='/home/dmitry/dev/veritas/app/Http'
+let g:netrw_dirhist_5='/home/dmitry/dev/veritas/app'
+let g:netrw_dirhist_6='/home/dmitry/dev/veritas/app/Http'
+let g:netrw_dirhist_7='/home/dmitry/dev/veritas/app/Http/Controllers'
